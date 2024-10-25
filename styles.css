@@ -1,0 +1,83 @@
+:root {
+  --primary-blue: #104e8b;
+  --light-blue: #4682b4;
+}
+
+body {
+  font-family: sans-serif;
+  background: radial-gradient(circle, #e0f7fa, #80deea);
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+}
+
+header h1 {
+  padding: 10px;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), 0 0 5px var(--primary-blue); /* Subtle shadow effect */
+}
+
+main {
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+}
+
+#library {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 20px;
+  border: 2px solid var(--primary-blue);
+  height: auto;
+  width: 80%;
+  gap: 30px;
+}
+
+.library-card {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  border: 1px solid var(--primary-blue);
+  padding: 40px;
+  border-radius: 4px;
+  height: 100%;
+}
+
+.library-card h1 {
+  color: var(--primary-blue);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.library-card p {
+  display: flex;
+}
+
+.library-card button {
+  width: 120px;
+  height: 30px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-blue);
+  color: white;
+  transition: background-color 0.3s ease;
+  transition: transform 0.4s ease;
+}
+
+.library-card button:hover {
+  background-color: var(--light-blue); 
+  border-color: var(--light-blue);
+  transform: scale(1.05);
+}
+
+.library-card button:last-child {
+  margin-top: auto; /* Push the first button to the bottom */
+}
