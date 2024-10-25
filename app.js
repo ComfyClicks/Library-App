@@ -1,5 +1,10 @@
+function generateUniqueId() {
+  return Math.floor(100 + Math.random() * 900).toString();
+}
+
 class Book {
   constructor(title, author, pages, read) {
+    this.id = generateUniqueId();
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -19,15 +24,17 @@ const book5 = new Book("Moby-Dick", "Herman Melville", 635, true);
 const book6 = new Book("Pride and Prejudice", "Jane Austen", 279, false);
 
 const myLibrary = [book1, book2, book3, book4, book5, book6];
+console.log('My Library: ', myLibrary.map(book => book.title));
 
-console.log(myLibrary);
 
 function createLibrary(books) {
   const library = document.getElementById('library');
 
-  books.forEach((book) => {
+  books.forEach((book, index) => {
     const libraryCard = document.createElement('div');
     libraryCard.classList.add('library-card');
+    libraryCard.setAttribute('data-id', book.id); 
+    console.log(`Book: ${book.title}, id: ${libraryCard.getAttribute('data-id')}`);
 
     const bookTitle = document.createElement('h1');
     bookTitle.textContent = book.title;
@@ -46,18 +53,37 @@ function createLibrary(books) {
     libraryCard.appendChild(bookStatus);
 
     const statusButton = document.createElement('button');
-    statusButton.textContent = 'Mark as read'
+    statusButton.textContent = `${book.read ? 'Mark as unread' : 'Mark as read'}`;
     libraryCard.appendChild(statusButton);
+
+    statusButton.addEventListener('click', () => {
+      const id = libraryCard.getAttribute('data-id');
+      const bookIndex = myLibrary.findIndex(book => book.id === id);
+      if (bookIndex !== -1) {
+        const book = myLibrary[bookIndex];
+        book.read = !book.read;
+        bookStatus.textContent = `Read: ${book.read ? 'Yes' : 'No'}`;
+        statusButton.textContent = book.read ? 'Mark as unread' : 'Mark as read';
+        console.log(`${book.title} updated to ${book.read ? 'read' : 'unread'}.`);
+      }
+    });
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Remove Book';
     libraryCard.appendChild(deleteButton);
 
-
+    deleteButton.addEventListener('click', () => {
+      const id = libraryCard.getAttribute('data-id');
+      const bookIndex = myLibrary.findIndex(book => book.id === id);
+      if (bookIndex !== -1) {
+        myLibrary.splice(bookIndex, 1);
+        libraryCard.remove();
+        console.log(`${book.title} removed.`, myLibrary.map(book => book.title));
+      }
+    });
 
     library.appendChild(libraryCard);
   })
 }
-
 
 createLibrary(myLibrary);
