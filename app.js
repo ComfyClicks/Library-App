@@ -34,7 +34,7 @@ function createLibrary(books) {
     const libraryCard = document.createElement('div');
     libraryCard.classList.add('library-card');
     libraryCard.setAttribute('data-id', book.id); 
-    console.log(`Book: ${book.title}, id: ${libraryCard.getAttribute('data-id')}`);
+    console.log(`${book.title}, id: ${libraryCard.getAttribute('data-id')}`);
 
     const bookTitle = document.createElement('h1');
     bookTitle.textContent = book.title;
@@ -45,16 +45,16 @@ function createLibrary(books) {
     libraryCard.appendChild(bookAuthor);
 
     const bookPages = document.createElement('p');
-    bookPages.textContent = book.pages;
+    bookPages.textContent = `Pages: ${book.pages}`;
     libraryCard.appendChild(bookPages);
 
-    const bookStatus = document.createElement('p');
-    bookStatus.textContent = `Read: ${book.read ? 'Yes' : 'No'}`;
-    libraryCard.appendChild(bookStatus);
+    const cardButtons = document.createElement('div');
+    cardButtons.classList.add('card-btns');
 
     const statusButton = document.createElement('button');
-    statusButton.textContent = `${book.read ? 'Mark as unread' : 'Mark as read'}`;
-    libraryCard.appendChild(statusButton);
+    statusButton.textContent = book.read ? 'Read' : 'Unread';
+    statusButton.classList.add(book.read ? 'read' : 'unread');
+    cardButtons.appendChild(statusButton);
 
     statusButton.addEventListener('click', () => {
       const id = libraryCard.getAttribute('data-id');
@@ -62,15 +62,17 @@ function createLibrary(books) {
       if (bookIndex !== -1) {
         const book = myLibrary[bookIndex];
         book.read = !book.read;
-        bookStatus.textContent = `Read: ${book.read ? 'Yes' : 'No'}`;
-        statusButton.textContent = book.read ? 'Mark as unread' : 'Mark as read';
+        statusButton.textContent = book.read ? 'Read' : 'Unread';
+        statusButton.classList.toggle('read', book.read);
+        statusButton.classList.toggle('unread', !book.read);
         console.log(`${book.title} updated to ${book.read ? 'read' : 'unread'}.`);
       }
     });
 
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Remove Book';
-    libraryCard.appendChild(deleteButton);
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-btn');
+    cardButtons.appendChild(deleteButton);
 
     deleteButton.addEventListener('click', () => {
       const id = libraryCard.getAttribute('data-id');
@@ -82,6 +84,7 @@ function createLibrary(books) {
       }
     });
 
+    libraryCard.appendChild(cardButtons);
     library.appendChild(libraryCard);
   })
 }

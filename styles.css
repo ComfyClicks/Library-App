@@ -4,33 +4,35 @@
 }
 
 body {
-  font-family: sans-serif;
-  background: radial-gradient(circle, #e0f7fa, #80deea);
+  font-family: Verdana;
+  background-color: #F8F9FA;
 }
 
 header {
   display: flex;
-  justify-content: center;
-  font-size: 35px;
+  font-size: 27px;
+  background-color: #80deea;
+  height: 90px;
+  margin-top: -18px;
 }
 
 header h1 {
-  padding: 10px;
-  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), 0 0 5px var(--primary-blue); /* Subtle shadow effect */
+  padding-left: 20px;
+  padding-top: -10px;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), 0 0 5px #1e90ff;
 }
 
-main {
+#container {
   height: auto;
   display: flex;
-  justify-content: center;
-
+  flex-direction: column;
+  align-items: center;
 }
 
 #library {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  padding: 20px;
-  border: 2px solid var(--primary-blue);
+  padding-top: 30px;
   height: auto;
   width: 80%;
   gap: 30px;
@@ -44,6 +46,7 @@ main {
   grid-template-rows: auto 1fr auto;
   align-items: center;
   border: 1px solid var(--primary-blue);
+  background: radial-gradient(circle, #e0f7fa, #80deea);
   padding: 40px;
   border-radius: 4px;
   height: 100%;
@@ -60,10 +63,59 @@ main {
   display: flex;
 }
 
+.card-btns {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
 .library-card button {
-  width: 120px;
+  width: 95px;
   height: 30px;
   font-size: 15px;
+  margin-top: 17px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.3s ease;
+  transition: transform 0.4s ease;
+}
+
+.read {
+  background-color: #28a745;
+}
+
+.read:hover {
+  background-color: #218838;
+  transform: scale(1.04);
+}
+
+.unread {
+  background-color: #dc3545;
+}
+
+.unread:hover {
+  background-color: #c82333;
+  transform: scale(1.04);
+}
+
+.delete-btn {
+  background-color: var(--primary-blue);
+}
+
+.delete-btn:hover {
+  background-color: var(--light-blue); 
+  border-color: var(--light-blue);
+  transform: scale(1.04);
+}
+
+
+#new-book-btn {
+  margin-bottom: 40px;
+  width: 160px;
+  height: 40px;
+  font-size: 19px;
   margin-top: 17px;
   border: none;
   border-radius: 5px;
@@ -73,7 +125,7 @@ main {
   transition: transform 0.4s ease;
 }
 
-.library-card button:hover {
+#new-book-btn:hover {
   background-color: var(--light-blue); 
   border-color: var(--light-blue);
   transform: scale(1.05);
