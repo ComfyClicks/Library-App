@@ -29,6 +29,7 @@ console.log('My Library: ', myLibrary.map(book => book.title));
 
 function createLibrary(books) {
   const library = document.getElementById('library');
+  library.innerHTML = '';
 
   books.forEach((book, index) => {
     const libraryCard = document.createElement('div');
@@ -89,4 +90,44 @@ function createLibrary(books) {
   })
 }
 
+function addNewBook() {
+  const addBookBtn = document.getElementById('new-book-btn');
+  const modal = document.getElementById('modal');
+  const closeBtn = document.querySelector('.close-btn');
+
+  // Show the modal when the "Add New Book" button is clicked
+  addBookBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+
+  // Hide the modal when the close button is clicked
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // Handle form submission
+  const form = document.getElementById('new-book-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
+
+    // Add new book to the library array
+    const newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    
+    // Re-render the library
+    createLibrary(myLibrary);
+
+    // Hide the modal
+    modal.style.display = 'none';
+
+    // Reset the form
+    form.reset();
+  })
+}
+
 createLibrary(myLibrary);
+addNewBook();

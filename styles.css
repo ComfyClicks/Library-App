@@ -1,24 +1,27 @@
 :root {
   --primary-blue: #104e8b;
   --light-blue: #4682b4;
+  --background: #F8F9FA;
+  --unused-blue: #80deea;
 }
 
 body {
   font-family: Verdana;
-  background-color: #F8F9FA;
+  background-color: var(--background);
 }
 
 header {
   display: flex;
-  font-size: 27px;
-  background-color: #80deea;
-  height: 90px;
-  margin-top: -18px;
+  font-size: 28px;
+  background: radial-gradient(circle, #e0f7fa, #80deea);
+  height: 95px;
+  margin-top: -23px;
 }
 
 header h1 {
   padding-left: 20px;
   padding-top: -10px;
+  letter-spacing: .3px;
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), 0 0 5px #1e90ff;
 }
 
@@ -110,7 +113,6 @@ header h1 {
   transform: scale(1.04);
 }
 
-
 #new-book-btn {
   margin-bottom: 40px;
   width: 160px;
@@ -129,4 +131,100 @@ header h1 {
   background-color: var(--light-blue); 
   border-color: var(--light-blue);
   transform: scale(1.05);
+}
+
+/* Modal styles */
+.modal {
+  /* display: none; Hidden by default */ 
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content h2 {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1), 0 0 1px #1e90ff;
+}
+
+.modal-content {
+  background-color: var(--background);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid var(--primary-blue);
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 500px; /* Maximum width */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.modal-content label {
+  font-weight: bold;
+}
+
+.modal-content input {
+  padding: 6px;
+  margin-bottom: 6px;
+}
+
+.modal-content form {
+  display: grid;
+  flex-direction: column;
+  margin: 25px;
+  padding: 10px;
+  gap: 8px;
+}
+
+.close-btn {
+  color: black;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1), 0 0 1px #1e90ff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content  form > *:last-child {
+  margin: auto;
+  margin-top: 25px;
+}
+
+#submit {
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  background-color: var(--primary-blue);
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-blue);
+  color: white;
+  transition: background-color 0.3s ease;
+  transition: transform 0.4s ease;
+}
+
+#submit:hover {
+  background-color: var(--light-blue); 
+  border-color: var(--light-blue);
+  transform: scale(1.05);
+}
+
+/* Remove arrows from number input fields in Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove arrows from number input fields in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
