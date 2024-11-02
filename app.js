@@ -17,11 +17,11 @@ function addBookToLibrary(book) {
 }
 
 const book1 = new Book("To Kill a Mockingbird", "Harper Lee", 281, true);
-const book2 = new Book("1984", "George Orwell", 328, false);
+const book2 = new Book("1984", "George Orwell", 328, true);
 const book3 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, true);
-const book4 = new Book("The Catcher in the Rye", "J.D. Salinger", 214, false);
+const book4 = new Book("The Catcher in the Rye", "J.D. Salinger", 214, true);
 const book5 = new Book("Moby-Dick", "Herman Melville", 635, true);
-const book6 = new Book("Pride and Prejudice", "Jane Austen", 279, false);
+const book6 = new Book("Pride and Prejudice", "Jane Austen", 279, true);
 
 const myLibrary = [book1, book2, book3, book4, book5, book6];
 console.log('My Library: ', myLibrary.map(book => book.title));
@@ -29,7 +29,7 @@ console.log('My Library: ', myLibrary.map(book => book.title));
 
 function createLibrary(books) {
   const library = document.getElementById('library');
-  library.innerHTML = '';
+  library.innerHTML = ''; // Clear existing content
 
   books.forEach((book, index) => {
     const libraryCard = document.createElement('div');
@@ -85,10 +85,11 @@ function createLibrary(books) {
       }
     });
 
-    libraryCard.appendChild(cardButtons);
     library.appendChild(libraryCard);
+    libraryCard.appendChild(cardButtons);
   })
 }
+
 
 function addNewBook() {
   const addBookBtn = document.getElementById('new-book-btn');
@@ -103,6 +104,13 @@ function addNewBook() {
   // Hide the modal when the close button is clicked
   closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
+  });
+
+  // Hide the modal when clicking outside of the modal
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
   });
 
   // Handle form submission
