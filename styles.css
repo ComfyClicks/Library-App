@@ -258,6 +258,7 @@ input[type="number"] {
 footer {
   background: radial-gradient(circle, #e0f7fa, #80deea);
   border-top: solid 1.5px var(--primary-blue);
+  color: var(--primary-blue);
   height: 3vh;
   width: 100%;
   display: flex;
