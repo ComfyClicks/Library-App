@@ -5,9 +5,19 @@
   --unused-blue: #80deea;
 }
 
-body {
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
   font-family: Verdana;
   background-color: var(--background);
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -15,8 +25,9 @@ header {
   font-size: 29px;
   background: radial-gradient(circle, #e0f7fa, #80deea);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: 98px;
+  height: 100px;
   margin-top: -23px;
+  border-bottom: solid 1.5px var(--primary-blue);
 }
 
 header h1 {
@@ -24,6 +35,10 @@ header h1 {
   padding-top: -10px;
   letter-spacing: .3px;
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), 0 0 5px #1e90ff;
+}
+
+main {
+  flex: 1;
 }
 
 #container {
@@ -118,7 +133,7 @@ header h1 {
 
 #new-book-btn {
   margin-bottom: 40px;
-  width: 160px;
+  width: 200px;
   height: 40px;
   font-size: 19px;
   margin-top: 17px;
@@ -238,4 +253,14 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Remove arrows from number input fields in Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+footer {
+  background: radial-gradient(circle, #e0f7fa, #80deea);
+  border-top: solid 1.5px var(--primary-blue);
+  height: 3vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
