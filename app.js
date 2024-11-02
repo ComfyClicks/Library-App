@@ -42,11 +42,11 @@ function createLibrary(books) {
     libraryCard.appendChild(bookTitle);
 
     const bookAuthor = document.createElement('p');
-    bookAuthor.textContent = book.author;
+    bookAuthor.textContent = `Written by ${book.author}`;
     libraryCard.appendChild(bookAuthor);
 
     const bookPages = document.createElement('p');
-    bookPages.textContent = `Pages: ${book.pages}`;
+    bookPages.textContent = `${book.pages} pages`;
     libraryCard.appendChild(bookPages);
 
     const cardButtons = document.createElement('div');
@@ -120,7 +120,7 @@ function addNewBook() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
+    const read = document.getElementById('read-check').checked;
 
     // Add new book to the library array
     const newBook = new Book(title, author, pages, read);
