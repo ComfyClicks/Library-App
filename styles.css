@@ -1,6 +1,8 @@
 :root {
   --primary-blue: #104e8b;
-  --light-blue: #4682b4;
+  --hover-blue: #0d3e6e;
+  --primary-red: #dc3545;
+  --hover-red: #c82333;
   --background: #F8F9FA;
   --unused-blue: #80deea;
 }
@@ -113,11 +115,11 @@ main {
 }
 
 .unread {
-  background-color: #dc3545;
+  background-color: var(--primary-red);
 }
 
 .unread:hover {
-  background-color: #c82333;
+  background-color: var(--hover-red);
   transform: scale(1.04);
 }
 
@@ -126,8 +128,8 @@ main {
 }
 
 .delete-btn:hover {
-  background-color: var(--light-blue); 
-  border-color: var(--light-blue);
+  background-color: var(--hover-blue); 
+  border-color: var(--hover-blue);
   transform: scale(1.04);
 }
 
@@ -146,11 +148,12 @@ main {
 }
 
 #new-book-btn:hover {
-  background-color: var(--light-blue); 
-  border-color: var(--light-blue);
+  background-color: var(--hover-blue); 
+  border-color: var(--hover-blue);
   transform: scale(1.05);
 }
 
+/* Styling for the modal */
 .modal {
   display: none;
   position: fixed;
@@ -160,7 +163,7 @@ main {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .modal-content h2 {
@@ -172,6 +175,7 @@ main {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid var(--primary-blue);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
   width: 75%;
   max-width: 500px;
   border-radius: 10px;
@@ -220,13 +224,13 @@ main {
 }
 
 #read-check {
-  height: 30px;
+  height: 25px;
   width: auto;
 }
 
 #add-book-btn {
-  width: 100px;
-  height: 30px;
+  width: 140px;
+  height: 35px;
   font-size: 15px;
   background-color: var(--primary-blue);
   border: none;
@@ -238,8 +242,8 @@ main {
 }
 
 #add-book-btn:hover {
-  background-color: var(--light-blue); 
-  border-color: var(--light-blue);
+  background-color: var(--hover-blue); 
+  border-color: var(--hover-blue);
   transform: scale(1.05);
 }
 
@@ -255,36 +259,45 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* Style the remove confirmation dialog */
+/* Styling for the remove confirmation dialog */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .remove-dialog {
-  border: none;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  max-width: 400px;
+  padding: 15px;
+  border: 1px solid var(--primary-blue);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--background);
+  max-width: 420px;
+  max-height: 200px;
   width: 100%;
+  height: 100%;
   margin: auto;
   text-align: center;
 }
 
 .remove-dialog h1 {
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin: 25px 0;
 }
 
 .remove-actions {
   display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
+  justify-content: center;
+  gap: 35px;
+  margin-top: 30px 0;
 }
 
 .remove-actions button {
-  padding: 10px 20px;
+  padding: 10px 16px;
+  width: 134px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.4s ease;
 }
 
@@ -304,7 +317,7 @@ input[type="number"] {
 }
 
 .cancel-remove-btn:hover {
-  background-color: var(--light-blue);
+  background-color: var(--hover-blue);
   transform: scale(1.04);
 }
 
@@ -312,9 +325,17 @@ footer {
   background: radial-gradient(circle, #e0f7fa, #80deea);
   border-top: solid 1.5px var(--primary-blue);
   color: var(--primary-blue);
-  height: 3vh;
+  height: 3.6vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+footer a {
+  color: var(--primary-blue);
+}
+
+footer a:hover {
+  color: var(--hover-red);
 }
