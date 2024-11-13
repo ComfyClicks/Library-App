@@ -52,6 +52,7 @@ function createLibrary(books) {
     const cardButtons = document.createElement('div');
     cardButtons.classList.add('card-btns');
 
+    // Adds read status button to library card
     const statusButton = document.createElement('button');
     statusButton.textContent = book.read ? 'Read' : 'Unread';
     statusButton.classList.add(book.read ? 'read' : 'unread');
@@ -70,6 +71,7 @@ function createLibrary(books) {
       }
     });
 
+    // Adds delete button to library card
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.classList.add('delete-btn');
@@ -78,10 +80,32 @@ function createLibrary(books) {
     deleteButton.addEventListener('click', () => {
       const id = libraryCard.getAttribute('data-id');
       const bookIndex = myLibrary.findIndex(book => book.id === id);
-      if (bookIndex !== -1) {
-        myLibrary.splice(bookIndex, 1);
-        libraryCard.remove();
-        console.log(`${book.title} removed.`, myLibrary.map(book => book.title));
+      const removeDialog = document.querySelector('.remove-dialog');
+      if (bookIndex !== -1) { //Check if book exists in the array
+        removeDialog.showModal();
+
+        // Handle the confirmation action
+        const confirmRemoveBtn = document.querySelector('.confirm-remove-btn');
+        confirmRemoveBtn.onclick = () => {
+          const deletedBook = myLibrary.splice(bookIndex, 1)[0];
+          libraryCard.remove();
+          console.log(`${deletedBook.title} removed:`, deletedBook);
+          console.log("Here's Your Updated Library: ", myLibrary.map(book => book.title));
+          removeDialog.close();
+        };
+
+        // Handle the cancellation action
+        const cancelRemoveBtn = document.querySelector('.cancel-remove-btn');
+        cancelRemoveBtn.onclick = () => {
+          removeDialog.close();
+        };
+
+        // Close the dialog if the user clicks outside of it
+        window.addEventListener('click', (event) => {
+          if (event.target === removeDialog) {
+            removeDialog.close();
+          }
+        });
       }
     });
 
