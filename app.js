@@ -28,7 +28,7 @@ console.log('My Library: ', myLibrary.map(book => book.title));
 
 // Creates library cards for each book and displays on page
 function createLibrary(books) {
-  const library = document.getElementById('library');
+  const library = document.querySelector('.library');
   library.innerHTML = ''; // Clear existing content
 
   books.forEach((book, index) => {
@@ -64,7 +64,7 @@ function createLibrary(books) {
       const bookIndex = myLibrary.findIndex(book => book.id === id);
       if (bookIndex !== -1) {
         const book = myLibrary[bookIndex];
-        book.read = !book.read;
+        book.read = !book.read; // Inverts boolean value of book.read
         statusButton.textContent = book.read ? 'Read' : 'Unread';
         statusButton.classList.toggle('read', book.read);
         statusButton.classList.toggle('unread', !book.read);
@@ -102,7 +102,7 @@ function createLibrary(books) {
         };
 
         // Close the dialog if the user clicks outside of it
-        window.addEventListener('click', (event) => {
+        removeDialog.addEventListener('click', (event) => {
           if (event.target === removeDialog) {
             removeDialog.close();
           }
@@ -117,7 +117,7 @@ function createLibrary(books) {
 
 // Adds new book to library
 function addBookToLibrary() {
-  const addBookBtn = document.getElementById('new-book-btn');
+  const addBookBtn = document.querySelector('.new-book-btn');
   const modal = document.querySelector('.modal');
   const closeBtn = document.querySelector('.close-btn');
 
@@ -132,17 +132,17 @@ function addBookToLibrary() {
   });
 
   // Hide the modal when clicking outside of the modal
-  window.addEventListener('click', (event) => {
+  modal.addEventListener('click', (event) => {
     if (event.target === modal) {
       modal.close();
     }
   });
 
-  // Handle form submission
-  const form = document.getElementById('new-book-form');
+  // Handle modal form submission
+  const form = document.querySelector('.new-book-form');
   form.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent the browser from navigating to the link
-    // Handle the link click with JavaScript and adds book to library array
+    // Handles the link click with JavaScript and adds book to library array
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
@@ -156,7 +156,7 @@ function addBookToLibrary() {
     createLibrary(myLibrary);
 
     // Hide the modal
-    modal.style.display = 'none';
+    modal.close();
 
     // Reset the form
     form.reset();
